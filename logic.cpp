@@ -30,7 +30,24 @@ char** loadLevel(const string& fileName, int& maxRow, int& maxCol, Player& playe
  * @updates  nextRow, nextCol
  */
 void getDirection(char input, int& nextRow, int& nextCol) {
-    
+
+    if(input != MOVE_UP && input != MOVE_DOWN && input != MOVE_LEFT && input != MOVE_RIGHT){
+        return;
+    }
+
+    if(input == MOVE_UP){
+        nextRow -= 1;
+    }
+    else if(input == MOVE_DOWN){
+        nextRow += 1;
+    }
+    else if(input == MOVE_RIGHT){
+        nextCol += 1;
+    }
+    else{
+        nextCol -= 1;
+    }
+
 }
 
 /**
@@ -42,15 +59,15 @@ void getDirection(char input, int& nextRow, int& nextCol) {
  * @return  2D map array for the dungeon level, holds char type.
  */
 char** createMap(int maxRow, int maxCol) {
-    
+
     if(maxRow <= 0 || maxCol <= 0){
         return nullptr;
     }
 
      char** map = new char*[maxRow];
 
-    for(int i = 0; i < maxCol; i++){
-        for(int j = 0; j < maxRow; j++){
+    for(int i = 0; i < maxRow; i++){
+        for(int j = 0; j < maxCol; j++){
             map[i][j] = TILE_OPEN;
         }
     }
