@@ -54,7 +54,12 @@ char** createMap(int maxRow, int maxCol) {
  * @update map, maxRow
  */
 void deleteMap(char**& map, int& maxRow) {
-    
+    for(int i = 0; i < maxRow; i++){
+        char* line = map[i];
+        delete[] line;
+    }
+    delete[] map;
+    maxRow = 0;
 }
 
 /**
