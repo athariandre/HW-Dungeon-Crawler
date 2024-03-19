@@ -42,6 +42,7 @@ void getDirection(char input, int& nextRow, int& nextCol) {
  * @return  2D map array for the dungeon level, holds char type.
  */
 char** createMap(int maxRow, int maxCol) {
+    
     if(maxRow <= 0 || maxCol <= 0){
         return nullptr;
     }
@@ -55,7 +56,6 @@ char** createMap(int maxRow, int maxCol) {
     }
 
     return map;
-
 }
 
 /**
