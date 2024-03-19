@@ -17,7 +17,35 @@ using std::cout, std::endl, std::ifstream, std::string;
  * @updates  maxRow, maxCol, player
  */
 char** loadLevel(const string& fileName, int& maxRow, int& maxCol, Player& player) {
-    return nullptr;
+    ifstream myfile(fileName);
+
+    myfile >> maxRow >> maxCol >> player.row >> player.col;
+    
+    if(myfile.fail()){
+        return nullptr;
+    }
+
+    if(maxRow <= 0 || maxRow > 999999 || maxCol <= 0 || maxCol > 999999 || player.row > maxRow || player.row < 0 || player.col > maxCol || player.col < 0){
+        return nullptr;
+    }
+
+    char** map = createMap(maxRow, maxCol);
+
+    for(int i = 0; i < maxRow; i++){
+        for(int j = 0; j < maxCol; j++){
+            char val;
+            myfile >> val;
+            if(myfile.fail()){
+                return nullptr;
+            }
+            if(val != TILE_OPEN || val != TILE_PLAYER || val != TILE_TREASURE || val != TILE_AMULET || val != TILE_MONSTER || val != TILE_PILLAR || val != TILE_DOOR || val != TILE_EXIT){
+                return nullptr;
+            }
+            map[i][j] = val;
+        }
+    }
+
+    return map;
 }
 
 /**
