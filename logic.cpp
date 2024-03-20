@@ -20,7 +20,10 @@ char** loadLevel(const string& fileName, int& maxRow, int& maxCol, Player& playe
 
     ifstream myfile(fileName);
 
-
+    if(!myfile.is_open()){
+        return nullptr;
+    }
+    
     myfile >> maxRow >> maxCol >> player.row >> player.col;
     
 
