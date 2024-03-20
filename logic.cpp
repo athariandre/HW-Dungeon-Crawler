@@ -44,7 +44,7 @@ char** loadLevel(const string& fileName, int& maxRow, int& maxCol, Player& playe
             char val;
             myfile >> val;
         
-            if(myfile.fail()){
+            if(myfile.fail() || myfile.eof()){
                 return nullptr;
             }
             if(val != TILE_OPEN && val != TILE_PLAYER && val != TILE_TREASURE && val != TILE_AMULET && val != TILE_MONSTER && val != TILE_PILLAR && val != TILE_DOOR && val != TILE_EXIT){
@@ -152,7 +152,7 @@ void deleteMap(char**& map, int& maxRow) {
 char** resizeMap(char** map, int& maxRow, int& maxCol) {
 
 
-    
+
     char**resizedMap = createMap(maxRow*2, maxCol*2);
 
     for(int i = 0; i < maxRow; i++){
