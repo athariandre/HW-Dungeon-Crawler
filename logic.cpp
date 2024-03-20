@@ -1,7 +1,6 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <limits.h>
 #include "logic.h"
 
 using std::cout, std::endl, std::ifstream, std::string;
@@ -18,7 +17,6 @@ using std::cout, std::endl, std::ifstream, std::string;
  * @updates  maxRow, maxCol, player
  */
 char** loadLevel(const string& fileName, int& maxRow, int& maxCol, Player& player) {
-
 
     int len = 0;
     int cnt = 0;
