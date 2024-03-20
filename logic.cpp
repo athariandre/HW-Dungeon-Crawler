@@ -152,7 +152,6 @@ char** resizeMap(char** map, int& maxRow, int& maxCol) {
     for(int i = 0; i < maxRow; i++){
         for(int j = 0; j < maxCol; j++){
             if(map[i][j] != TILE_PLAYER){
-                cout << "resizing map, adding tile at i,j " << i << ", " << j << endl;
                 resizedMap[i][j] = map[i][j];
                 resizedMap[i+maxRow][j] = map[i][j];
                 resizedMap[i][j+maxCol] = map[i][j];
@@ -164,27 +163,14 @@ char** resizeMap(char** map, int& maxRow, int& maxCol) {
         }
     }
     
-    cout << "pre delete" << endl;
 
     int temp = maxRow;
 
     deleteMap(map, temp);
 
-    cout << "post delete" << endl;
-
-    cout << "pre dimension change row,col = " << maxRow << " " << maxCol << endl;
-
     maxRow *= 2;
     maxCol *= 2;
 
-    cout << "dimensions changed to row,col = " << maxRow << " " << maxCol << endl;
-
-    for(int i = 0; i < maxRow; i++){
-        for(int j = 0; j < maxCol; j++){
-            cout << resizedMap[i][j] << " ";
-        }
-        cout << endl;
-    }
     
     return resizedMap;
 }
