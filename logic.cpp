@@ -18,6 +18,8 @@ using std::cout, std::endl, std::ifstream, std::string;
  */
 char** loadLevel(const string& fileName, int& maxRow, int& maxCol, Player& player) {
 
+
+    int len = 0;
     ifstream myfile(fileName);
 
     if(!myfile.is_open()){
@@ -38,21 +40,39 @@ char** loadLevel(const string& fileName, int& maxRow, int& maxCol, Player& playe
 
     char** map = createMap(maxRow, maxCol);
 
-
+    bool exitPossible = false;
     for(int i = 0; i < maxRow; i++){
+        len++;
         for(int j = 0; j < maxCol; j++){
             char val;
             myfile >> val;
         
             if(myfile.fail() || myfile.eof()){
+                deleteMap(map, len);
                 return nullptr;
             }
             if(val != TILE_OPEN && val != TILE_PLAYER && val != TILE_TREASURE && val != TILE_AMULET && val != TILE_MONSTER && val != TILE_PILLAR && val != TILE_DOOR && val != TILE_EXIT){
+                deleteMap(map, len);
                 return nullptr;
             }
+            if(val == TILE_DOOR || val == TILE_EXIT){
+                exitPossible = true;
+            }
+
+            
 
             map[i][j] = val;
         }
+    }
+
+
+    if(map[player.row][player.col] != TILE_OPEN){
+        deleteMap(map, len);
+        return nullptr;
+    }
+    if(!exitPossible){
+        deleteMap(map, len);
+        return nullptr;
     }
 
     map[player.row][player.col] = TILE_PLAYER;
