@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <limits.h>
 #include "logic.h"
 
 using std::cout, std::endl, std::ifstream, std::string;
@@ -32,6 +33,10 @@ char** loadLevel(const string& fileName, int& maxRow, int& maxCol, Player& playe
 
 
     if(myfile.fail() || maxRow <= 0 || maxRow > 999999 || maxCol <= 0 || maxCol > 999999 || player.row > maxRow || player.row < 0 || player.col > maxCol || player.col < 0){
+        return nullptr;
+    }
+
+    if(INT32_MAX / maxRow < maxCol || INT32_MAX / maxCol < maxRow){
         return nullptr;
     }
 
