@@ -264,5 +264,75 @@ int doPlayerMove(char** map, int maxRow, int maxCol, Player& player, int nextRow
  * @update map contents
  */
 bool doMonsterAttack(char** map, int maxRow, int maxCol, const Player& player) {
+    //checking right
+
+
+    cout << "pre monster move check right" << endl;
+    for(int i = player.col; i < maxCol; i++){
+        if(i == player.col){
+            continue;
+        }
+        if(map[player.row][i] == TILE_PILLAR){
+            break;
+        }
+        if(map[player.row][i] == TILE_MONSTER){
+            map[player.row][i] = TILE_OPEN;
+            map[player.row][i-1] = TILE_MONSTER;
+        }
+    }
+    cout << "post monster move check right" << endl;
+
+    //checking left
+    cout << "pre monster move check left" << endl;
+    for(int i = player.col; i >= 0; i--){
+        if(i == player.col){
+            continue;
+        }
+        if(map[player.row][i] == TILE_PILLAR){
+            break;
+        }
+        if(map[player.row][i] == TILE_MONSTER){
+            map[player.row][i] = TILE_OPEN;
+            map[player.row][i+1] = TILE_MONSTER;
+        }
+    }
+    cout << "post monster move check left" << endl;
+
+
+    //checking down
+    cout << "pre monster move check down" << endl;
+    for(int i = player.row; i < maxRow; i++){
+        if(i == player.row){
+            continue;
+        }
+        if(map[i][player.col] == TILE_PILLAR){
+            break;
+        }
+        if(map[i][player.col] == TILE_MONSTER){
+            map[i][player.col] = TILE_OPEN;
+            map[i-1][player.col] = TILE_MONSTER;
+        }
+    }
+    cout << "post monster move check down" << endl;
+
+    //checking up
+    cout << "pre monster move check up" << endl;
+    for(int i = player.row; i >= 0; i--){
+        if(i == player.row){
+            continue;
+        }
+        if(map[i][player.col] == TILE_PILLAR){
+            break;
+        }
+        if(map[i][player.col] == TILE_MONSTER){
+            map[i][player.col] = TILE_OPEN;
+            map[i+1][player.col] = TILE_MONSTER;
+        }
+    }
+    cout << "post monster move check up" << endl;
+
+    if(map[player.row][player.col] == TILE_MONSTER){
+        return true;
+    }
     return false;
 }

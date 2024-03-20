@@ -69,10 +69,17 @@ int main() {
                 // we will use the player's current location and pass-by-reference to find the intended next location
                 nextRow = player.row;
                 nextCol = player.col;
+
+
                 getDirection(input, nextRow, nextCol);
 
+
+
                 // move player to new location index, if possible, and get player status
+
+
                 status = doPlayerMove(map, maxRow, maxCol, player, nextRow, nextCol);
+
             }
 
             // quit game if user escapes
@@ -91,6 +98,8 @@ int main() {
             }
 
             // move monsters, end if player is caught
+
+
             if (doMonsterAttack(map, maxRow, maxCol, player)) {
                 outputMap(map, maxRow, maxCol);
                 cout << "You died, adventurer! Better luck next time!" << endl;
