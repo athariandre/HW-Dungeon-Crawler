@@ -57,6 +57,13 @@ char** loadLevel(const string& fileName, int& maxRow, int& maxCol, Player& playe
 
     map[player.row][player.col] = TILE_PLAYER;
 
+    char temp;
+
+    myfile >> temp;
+
+    if(!myfile.eof()){
+        return nullptr;
+    }
 
     return map;
 }
