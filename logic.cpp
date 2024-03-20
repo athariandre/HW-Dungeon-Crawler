@@ -61,10 +61,6 @@ char** loadLevel(const string& fileName, int& maxRow, int& maxCol, Player& playe
 
     myfile >> temp;
 
-    if(!myfile.eof()){
-        return nullptr;
-    }
-
     return map;
 }
 
