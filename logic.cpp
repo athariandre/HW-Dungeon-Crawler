@@ -29,11 +29,8 @@ char** loadLevel(const string& fileName, int& maxRow, int& maxCol, Player& playe
     myfile >> maxRow >> maxCol >> player.row >> player.col;
     
 
-    if(myfile.fail()){
-        return nullptr;
-    }
 
-    if(maxRow <= 0 || maxRow > 999999 || maxCol <= 0 || maxCol > 999999 || player.row > maxRow || player.row < 0 || player.col > maxCol || player.col < 0){
+    if(myfile.fail() || maxRow <= 0 || maxRow > 999999 || maxCol <= 0 || maxCol > 999999 || player.row > maxRow || player.row < 0 || player.col > maxCol || player.col < 0){
         return nullptr;
     }
 
@@ -47,19 +44,13 @@ char** loadLevel(const string& fileName, int& maxRow, int& maxCol, Player& playe
             char val;
             myfile >> val;
         
-            if(myfile.fail() || myfile.eof()){
-                deleteMap(map, len);
-                return nullptr;
-            }
-            if(val != TILE_OPEN && val != TILE_PLAYER && val != TILE_TREASURE && val != TILE_AMULET && val != TILE_MONSTER && val != TILE_PILLAR && val != TILE_DOOR && val != TILE_EXIT){
+            if((myfile.fail()) || (val != TILE_OPEN && val != TILE_PLAYER && val != TILE_TREASURE && val != TILE_AMULET && val != TILE_MONSTER && val != TILE_PILLAR && val != TILE_DOOR && val != TILE_EXIT)){
                 deleteMap(map, len);
                 return nullptr;
             }
             if(val == TILE_DOOR || val == TILE_EXIT){
                 exitPossible = true;
             }
-
-            
 
             map[i][j] = val;
         }
@@ -80,6 +71,11 @@ char** loadLevel(const string& fileName, int& maxRow, int& maxCol, Player& playe
     char temp;
 
     myfile >> temp;
+
+    if(!myfile.eof()){
+        deleteMap(map,len);
+        return nullptr;
+    }
 
     return map;
 }
