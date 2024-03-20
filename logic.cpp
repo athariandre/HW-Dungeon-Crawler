@@ -136,10 +136,14 @@ char** createMap(int maxRow, int maxCol) {
  * @update map, maxRow
  */
 void deleteMap(char**& map, int& maxRow) {
+
+    if(maxRow <= 0){
+        return;
+    }
     for(int i = 0; i < maxRow; i++){
         delete[] map[i];
     }
- delete[] map;
+    delete[] map;
     map = nullptr;
     maxRow = 0;
 }
