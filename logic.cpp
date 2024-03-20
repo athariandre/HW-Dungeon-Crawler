@@ -20,6 +20,7 @@ char** loadLevel(const string& fileName, int& maxRow, int& maxCol, Player& playe
 
 
     int len = 0;
+    int cnt = 0;
     ifstream myfile(fileName);
 
     if(!myfile.is_open()){
@@ -53,6 +54,7 @@ char** loadLevel(const string& fileName, int& maxRow, int& maxCol, Player& playe
             }
 
             map[i][j] = val;
+            cnt++;
         }
     }
 
@@ -62,6 +64,10 @@ char** loadLevel(const string& fileName, int& maxRow, int& maxCol, Player& playe
         return nullptr;
     }
     if(!exitPossible){
+        deleteMap(map, len);
+        return nullptr;
+    }
+    if(maxRow * maxCol != cnt){
         deleteMap(map, len);
         return nullptr;
     }
