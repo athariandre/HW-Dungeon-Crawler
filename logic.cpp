@@ -23,7 +23,7 @@ char** loadLevel(const string& fileName, int& maxRow, int& maxCol, Player& playe
     if(!myfile.is_open()){
         return nullptr;
     }
-    
+
     myfile >> maxRow >> maxCol >> player.row >> player.col;
     
 
@@ -150,6 +150,9 @@ void deleteMap(char**& map, int& maxRow) {
  * @update maxRow, maxCol
  */
 char** resizeMap(char** map, int& maxRow, int& maxCol) {
+
+
+    
     char**resizedMap = createMap(maxRow*2, maxCol*2);
 
     for(int i = 0; i < maxRow; i++){
