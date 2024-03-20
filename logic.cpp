@@ -163,11 +163,28 @@ char** resizeMap(char** map, int& maxRow, int& maxCol) {
             }
         }
     }
+    
+    cout << "pre delete" << endl;
 
-    deleteMap(map, maxRow);
+    int temp = maxRow;
+
+    deleteMap(map, temp);
+
+    cout << "post delete" << endl;
+
+    cout << "pre dimension change row,col = " << maxRow << " " << maxCol << endl;
 
     maxRow *= 2;
     maxCol *= 2;
+
+    cout << "dimensions changed to row,col = " << maxRow << " " << maxCol << endl;
+
+    for(int i = 0; i < maxRow; i++){
+        for(int j = 0; j < maxCol; j++){
+            cout << resizedMap[i][j] << " ";
+        }
+        cout << endl;
+    }
     
     return resizedMap;
 }
