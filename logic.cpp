@@ -186,8 +186,12 @@ void deleteMap(char**& map, int& maxRow) {
 char** resizeMap(char** map, int& maxRow, int& maxCol) {
 
 
+    if(map == nullptr || ((INT32_MAX / (2*maxRow)) < (2*maxCol)) || ((INT32_MAX / (2*maxCol)) < (2*maxRow))){
+        return nullptr;
+    } 
 
     char**resizedMap = createMap(maxRow*2, maxCol*2);
+
 
     for(int i = 0; i < maxRow; i++){
         for(int j = 0; j < maxCol; j++){
@@ -198,7 +202,7 @@ char** resizeMap(char** map, int& maxRow, int& maxCol) {
                 resizedMap[i+maxRow][j+maxCol] = map[i][j];
             }
             else{
-                resizedMap[i][j] = map[i][j];
+                resizedMap[i][j] = map[i][j]; //other tiles already filled in because createMap instantiates map with open tiles
             }
         }
     }
