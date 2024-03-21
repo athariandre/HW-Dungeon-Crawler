@@ -186,7 +186,7 @@ void deleteMap(char**& map, int& maxRow) {
 char** resizeMap(char** map, int& maxRow, int& maxCol) {
 
 
-    if(map == nullptr || ((INT32_MAX / (2*maxRow)) < (2*maxCol)) || ((INT32_MAX / (2*maxCol)) < (2*maxRow))){
+    if(map == nullptr || ((INT32_MAX / (2*maxRow)) < (2*maxCol)) || ((INT32_MAX / (2*maxCol)) < (2*maxRow)) || (INT32_MAX / maxRow < maxCol) || (INT32_MAX / maxCol < maxRow)){
         return nullptr;
     } 
 
