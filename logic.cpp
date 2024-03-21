@@ -159,6 +159,8 @@ char** createMap(int maxRow, int maxCol) {
 void deleteMap(char**& map, int& maxRow) {
 
     if(maxRow <= 0 || map== nullptr){
+        map = nullptr;
+        maxRow = 0;
         return;
     }
     for(int i = 0; i < maxRow; i++){
