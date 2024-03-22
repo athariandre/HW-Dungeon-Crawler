@@ -192,6 +192,9 @@ char** resizeMap(char** map, int& maxRow, int& maxCol) {
 
     char**resizedMap = createMap(maxRow*2, maxCol*2);
 
+    if(resizedMap == nullptr){
+        return nullptr;
+    }
 
     for(int i = 0; i < maxRow; i++){
         for(int j = 0; j < maxCol; j++){
